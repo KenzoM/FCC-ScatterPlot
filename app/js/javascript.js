@@ -1,10 +1,10 @@
 $(document).ready(function(){
-  const w = 800;
-  const h = 450;
+  const w = 1200;
+  const h = 650;
   const margin = {
     top: 50,
-    bottom: 50,
-    left: 50,
+    bottom: 90,
+    left: 80,
     right: 50
   }
   function render(data){
@@ -47,10 +47,11 @@ $(document).ready(function(){
 
     const xAxis = d3.axisBottom(x)
                     .tickFormat(formatSeconds)
-                    .ticks(10);
+                    .ticks(7);
 
     const yAxis = d3.axisLeft(y);
 
+    //drawAxis purpose is to render the axis and its label once
     function drawAxis(params){
       if(params.initialize){
         //draw x axis units
@@ -68,14 +69,14 @@ $(document).ready(function(){
         this.select(".x.axis")
             .append("text")
             .classed("x axis-label",true)
-            .attr("transform","translate("+ width/2 +",40)")
+            .attr("transform","translate("+ width/2 +",60)")
             .text("Minutes Behind Fastest Time")
 
         //draw y axis label
         this.select(".y.axis")
             .append("text")
             .classed("y axis-label", true)
-            .attr("transform", "translate(-30,"+ height/2 +") rotate(-90)")
+            .attr("transform", "translate(-40,"+ height/2 +") rotate(-90)")
             .text("Rank")
       }
     }
