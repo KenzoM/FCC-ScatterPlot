@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  const w = 1200;
-  const h = 650;
+  const w = 900;
+  const h = 600;
   const margin = {
     top: 50,
     bottom: 90,
@@ -82,6 +82,7 @@ $(document).ready(function(){
     }
 
     function plot(params){
+      //render axis and its labels
       drawAxis.call(this,params)
       const self = this;
       //enter
@@ -92,12 +93,15 @@ $(document).ready(function(){
           .classed("point", true)
       //update
       this.selectAll(".point")
-          .attr("r",2)
+          .attr("r",5)
           .attr("cx", function(d,i){
             return x(d.Seconds - bestTime)
           })
           .attr("cy", function(d,i){
             return y(d.Place)
+          })
+          .style("fill",function(d,i){
+            return d.Doping === "" ? "66CDFF" : "FF6680"
           })
       //exit
       this.selectAll(".point")
