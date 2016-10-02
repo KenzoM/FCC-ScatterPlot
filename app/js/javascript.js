@@ -35,34 +35,48 @@ $(document).ready(function(){
 
     const x = d3.scaleLinear()
                 .domain([d3.max(data,function(d){
-                  return d.Seconds - bestTime
+                  return d.Seconds - bestTime + 10
                 }),0])
                 .range([0,width])
 
     const y = d3.scaleLinear()
                 .domain(d3.extent(data,function(d){
-                  return d.Place
+                  return d.Place + 1
                 }))
                 .range([0, height])
 
     const xAxis = d3.axisBottom(x)
                     .tickFormat(formatSeconds)
-                    .ticks(5);
+                    .ticks(10);
 
     const yAxis = d3.axisLeft(y);
 
     function drawAxis(params){
       if(params.initialize){
-        //draw x axis
+        //draw x axis units
         this.append("g")
             .call(params.axis.x)
             .classed("x axis",true)
             .attr("transform","translate(0,"+ height +")")
-        //draw y axis
+        //draw y axis units
         this.append("g")
             .call(params.axis.y)
             .classed("y axis", true)
             .attr("transform","translate(0,0)")
+
+        //draw x axis label
+        this.select(".x.axis")
+            .append("text")
+            .classed("x axis-label",true)
+            .attr("transform","translate("+ width/2 +",40)")
+            .text("Minutes Behind Fastest Time")
+
+        //draw y axis label
+        this.select(".y.axis")
+            .append("text")
+            .classed("y axis-label", true)
+            .attr("transform", "translate(-30,"+ height/2 +") rotate(-90)")
+            .text("Rank")
       }
     }
 

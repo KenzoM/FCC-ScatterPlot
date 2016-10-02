@@ -4,3 +4,8 @@ body {
 
 #chart {
   border: 1px solid black; }
+
+.axis-label {
+  text-anchor: middle;
+  fill: black;
+  font-size: 20px; }
