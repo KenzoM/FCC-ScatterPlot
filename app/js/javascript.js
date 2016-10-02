@@ -7,8 +7,14 @@ $(document).ready(function(){
     left: 50,
     right: 50
   }
+  function render(data){
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("id","chart")
+                  .attr("width", w)
+                  .attr("height", h)
+  }
   const url = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
-
   $.ajax({
     type: "GET",
     dataType: "json",
@@ -20,7 +26,7 @@ $(document).ready(function(){
 
     },
     success: (data) =>{
-      console.log(data)
+      render(data)
     }
   })
 })
