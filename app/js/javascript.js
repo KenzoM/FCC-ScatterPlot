@@ -30,12 +30,29 @@ $(document).ready(function(){
                 .domain(d3.extent(data,function(d){
                   return d.Place
                 }))
+                .range([0, height])
 
     const xAxis = d3.axisBottom(x);
-    const yAxis = d3.axisLeft(y).ticks(5);
+    const yAxis = d3.axisLeft(y);
+
+    function drawAxis(params){
+      if(params.initialize){
+        //draw x axis
+        this.append("g")
+            .call(params.axis.x)
+            .classed("x axis",true)
+            .attr("transform","translate(0,"+ height +")")
+        //draw y axis
+        this.append("g")
+            .call(params.axis.y)
+            .classed("y axis", true)
+            .attr("transform","translate(0,0)")
+      }
+    }
 
     function plot(params){
-
+      drawAxis.call(this,params)
+      const self = this;
       //enter
       this.selectAll(".point")
           .data(params.data)
@@ -59,7 +76,12 @@ $(document).ready(function(){
     }
 
     plot.call(chart,{
-      data:data
+      data:data,
+      axis:{
+        x: xAxis,
+        y: yAxis
+      },
+      initialize: true
     })
   }
   const url = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
