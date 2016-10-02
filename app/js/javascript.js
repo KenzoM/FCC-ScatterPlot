@@ -20,11 +20,24 @@ $(document).ready(function(){
                 .classed("display", true)
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    //bestTime is use for offset in x-scale units
+    const bestTime = d3.min(data,function(d){
+      return d.Seconds
+    })
+
+    //formatTime is use for converting the parsed delta time for
+    //x-axis units
+
+    const formatTime = d3.timeFormat("%M:%S");
+    const formatSeconds = function(seconds) {
+      return formatTime(new Date(2014, 0, 1, 0, 0, seconds))
+    };
+
     const x = d3.scaleLinear()
-                .domain(d3.extent(data,function(d){
-                  return d.Seconds
-                }))
-                .range([width, 0])
+                .domain([d3.max(data,function(d){
+                  return d.Seconds - bestTime
+                }),0])
+                .range([0,width])
 
     const y = d3.scaleLinear()
                 .domain(d3.extent(data,function(d){
@@ -32,7 +45,10 @@ $(document).ready(function(){
                 }))
                 .range([0, height])
 
-    const xAxis = d3.axisBottom(x);
+    const xAxis = d3.axisBottom(x)
+                    .tickFormat(formatSeconds)
+                    .ticks(5);
+
     const yAxis = d3.axisLeft(y);
 
     function drawAxis(params){
@@ -63,7 +79,7 @@ $(document).ready(function(){
       this.selectAll(".point")
           .attr("r",2)
           .attr("cx", function(d,i){
-            return x(d.Seconds)
+            return x(d.Seconds - bestTime)
           })
           .attr("cy", function(d,i){
             return y(d.Place)
