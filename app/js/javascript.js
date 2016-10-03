@@ -7,6 +7,29 @@ $(document).ready(function(){
     left: 80,
     right: 100
   }
+
+  const yOffset = 10;
+
+  function title(){
+
+    const mainTitle = document.createElement("h1");
+    mainTitle.innerHTML = "DOPING IN PROFESSIONAL BICYCLE RACING"
+    mainTitle.className = "title";
+
+    const subTitle = document.createElement("h2");
+    subTitle.innerHTML = "35 Fastest times up Alpe d'Huez";
+    subTitle.className = "subtitle"
+
+    const intro = document.createElement("h3");
+    intro.innerHTML = "Normalized to 13.8km distance";
+    intro.className = "intro"
+
+    const canvas = document.getElementById('canvas')
+    canvas.appendChild(mainTitle)
+    canvas.appendChild(subTitle)
+    canvas.appendChild(intro)
+  }
+
   function render(data){
     const width = w - (margin.left + margin.right);
     const height = h - (margin.top + margin.bottom);
@@ -186,6 +209,7 @@ $(document).ready(function(){
 
     },
     success: (data) =>{
+      title()
       render(data)
     }
   })

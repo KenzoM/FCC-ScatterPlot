@@ -8,18 +8,26 @@ html{
 }
 body{
 	text-align: center;
+	color: white;
 }
 
 #canvas{
 	margin: 45px auto;
 	background: rgba(0, 0, 0, 0.69);
-	width: 950px;
-	height: 600px;
+	width: 960px;
+	height: 700px;
 }
 
 #chart{
+	// border: 1px solid red;
 }
 
+.title{
+	padding-top: 8px;
+}
+.intro{
+	margin: -14px;
+}
 g.gridline line{
 	fill: none;
 	shape-rendering: crispEdges;
