@@ -93,7 +93,7 @@ $(document).ready(function(){
     function textToolTip(d){
       const allegation = d.Doping === "" ? "No allegations" : d.Doping
 
-      return d.Name + ":" + " " + d.Nationality + "<br>" +
+      return "<strong>" + d.Name + "</strong>" + ":" + " " + d.Nationality + "<br>" +
             "Year: " + d.Year + " Time: " + d.Time + "<br><br>" + allegation
     }
 
@@ -161,17 +161,17 @@ $(document).ready(function(){
           })
           .on("mouseover",function(d,i){
             const text = textToolTip(d)
-            toolTip.transition()
+            toolTip.transition().delay(100)
                   .style("opacity",0.9)
             toolTip.html(text)
                   .style("left", (d3.event.pageX + 20) + "px")
                   .style("top", (d3.event.pageY - 28) + "px")
             d3.select(this)
-              .style("r",8)
+              .style("r",10)
           })
           .on("mouseout",function(d,i){
-            // toolTip.transition()
-            //     .style("opacity",0)
+            toolTip.transition()
+                .style("opacity",0)
             d3.select(this)
               .style("r",6)
           })
