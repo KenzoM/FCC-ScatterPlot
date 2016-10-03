@@ -175,6 +175,11 @@ $(document).ready(function(){
             d3.select(this)
               .style("r",6)
           })
+          .on("click",function(d,i){
+            if (d.URL != "") {
+              window.open(d.URL);
+            }
+          })
 
       this.selectAll(".bikers-name")
         .attr("x",function(d,i){
