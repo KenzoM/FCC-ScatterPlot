@@ -6,9 +6,13 @@ body {
   border: 1px solid black; }
 
 .axis {
-  font-size: 20px; }
+  font-size: 17px; }
 
 .axis-label {
   text-anchor: middle;
   fill: black;
   font-size: 18px; }
+
+.bikers-name {
+  font-size: 14px;
+  fill: black; }

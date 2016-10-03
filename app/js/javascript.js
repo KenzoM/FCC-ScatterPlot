@@ -5,7 +5,7 @@ $(document).ready(function(){
     top: 50,
     bottom: 90,
     left: 80,
-    right: 50
+    right: 100
   }
   function render(data){
     const width = w - (margin.left + margin.right);
@@ -41,7 +41,7 @@ $(document).ready(function(){
 
     const y = d3.scaleLinear()
                 .domain(d3.extent(data,function(d){
-                  return d.Place + 1
+                  return d.Place + 2
                 }))
                 .range([0, height])
 
@@ -50,6 +50,13 @@ $(document).ready(function(){
                     .ticks(7);
 
     const yAxis = d3.axisLeft(y);
+
+    //add tooltip for user's interaction
+    const tooltip = d3.select("#chart")
+                .append("div")
+                  .classed("tooltip", true)
+                  .style("opacity",0)
+
 
     //drawAxis purpose is to render the axis and its label once
     function drawAxis(params){
@@ -64,14 +71,12 @@ $(document).ready(function(){
             .call(params.axis.y)
             .classed("y axis", true)
             .attr("transform","translate(0,0)")
-
         //draw x axis label
         this.select(".x.axis")
             .append("text")
             .classed("x axis-label",true)
             .attr("transform","translate("+ width/2 +",60)")
             .text("Minutes Behind Fastest Time")
-
         //draw y axis label
         this.select(".y.axis")
             .append("text")
@@ -85,15 +90,22 @@ $(document).ready(function(){
       //render axis and its labels
       drawAxis.call(this,params)
       const self = this;
-      //enter
+      //enter() phase
       this.selectAll(".point")
           .data(params.data)
           .enter()
           .append("circle")
           .classed("point", true)
-      //update
+
+      this.selectAll(".bikers-name")
+          .data(params.data)
+          .enter()
+          .append("text")
+          .classed("bikers-name",true)
+
+      //update phase
       this.selectAll(".point")
-          .attr("r",5)
+          .attr("r",6)
           .attr("cx", function(d,i){
             return x(d.Seconds - bestTime)
           })
@@ -103,8 +115,33 @@ $(document).ready(function(){
           .style("fill",function(d,i){
             return d.Doping === "" ? "66CDFF" : "FF6680"
           })
-      //exit
+          .on("mouseover",function(d,i){
+            d3.select(this)
+              .style("r",8)
+          })
+          .on("mouseout",function(d,i){
+            d3.select(this)
+              .style("r",6)
+          })
+
+      this.selectAll(".bikers-name")
+        .attr("x",function(d,i){
+          return x(d.Seconds - bestTime) + 9
+        })
+        .attr("y",function(d,i){
+          return y(d.Place) + 5
+        })
+        .text(function(d,i){
+          return d.Name
+        })
+
+      //exit phase
       this.selectAll(".point")
+          .data(params.data)
+          .exit()
+          .remove()
+
+      this.selectAll(".bikers-name")
           .data(params.data)
           .exit()
           .remove()
