@@ -1,18 +1,42 @@
+html {
+  background: url(http://static.digg.com/images/90fea9dde30044a09242879f6b37bece_9f8a6fa872b24912a63bd61fb171c642_header.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 body {
-  margin: 45px auto;
   text-align: center; }
 
-#chart {
-  border: 1px solid black; }
+#canvas {
+  margin: 45px auto;
+  background: rgba(0, 0, 0, 0.69);
+  width: 950px;
+  height: 600px; }
 
 .axis {
+  fill: white;
   font-size: 17px; }
 
 .axis-label {
   text-anchor: middle;
-  fill: black;
+  fill: white;
   font-size: 18px; }
 
 .bikers-name {
   font-size: 14px;
-  fill: black; }
+  fill: white; }
+
+g.axis line, g.axis path {
+  fill: none;
+  stroke-width: 2px;
+  stroke: white;
+  shape-rendering: crispEdges; }
+
+g.axis text {
+  fill: white;
+  font-family: sans-serif; }
+
+g.axis path {
+  stroke-width: 2;
+  stroke: white; }

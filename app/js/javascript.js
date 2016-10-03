@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  const w = 900;
+  const w = 950;
   const h = 600;
   const margin = {
     top: 50,
@@ -10,7 +10,7 @@ $(document).ready(function(){
   function render(data){
     const width = w - (margin.left + margin.right);
     const height = h - (margin.top + margin.bottom);
-    const svg = d3.select("body")
+    const svg = d3.select("#canvas")
                   .append("svg")
                   .attr("id","chart")
                   .attr("width", w)
@@ -47,7 +47,8 @@ $(document).ready(function(){
 
     const xAxis = d3.axisBottom(x)
                     .tickFormat(formatSeconds)
-                    .ticks(7);
+                    .ticks(7)
+                    .tickSize(10);
 
     const yAxis = d3.axisLeft(y);
 
