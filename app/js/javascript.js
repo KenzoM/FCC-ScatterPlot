@@ -7,11 +7,7 @@ $(document).ready(function(){
     left: 80,
     right: 100
   }
-
-  const yOffset = 10;
-
   function title(){
-
     const mainTitle = document.createElement("h1");
     mainTitle.innerHTML = "DOPING IN PROFESSIONAL BICYCLE RACING"
     mainTitle.className = "title";
@@ -41,7 +37,7 @@ $(document).ready(function(){
 
     const chart = svg.append("g")
                 .classed("display", true)
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     //bestTime is use for offset in x-scale units
     const bestTime = d3.min(data,function(d){
@@ -127,6 +123,47 @@ $(document).ready(function(){
             .classed("y axis-label", true)
             .attr("transform", "translate(-40,"+ height/2 +") rotate(-90)")
             .text("Rank")
+        //appends legends
+        this.append("g")
+          .classed("legend", true)
+
+        this.select(".legend")
+            .append("circle")
+              .style("fill", "66CDFF")
+              .attr("r",6)
+              .attr("cx", 665)
+              .attr("cy", 200)
+
+        this.select(".legend")
+            .append("circle")
+              .style("fill", "D25668")
+              .attr("r",6)
+              .attr("cx", 665)
+              .attr("cy", 220)
+
+        this.select(".legend")
+            .append("text")
+              .style("fill","white")
+              .style("font-size",14)
+              .attr("x", 680)
+              .attr("y", 204)
+              .text("No doping allegations")
+
+        this.select(".legend")
+            .append("text")
+              .style("fill","white")
+              .style("font-size",14)
+              .attr("x", 680)
+              .attr("y", 224)
+              .text("Riders with doping allegations")
+
+        this.select(".legend")
+            .append("text")
+              .style("fill","white")
+              .style("font-size",14)
+              .attr("x", 680)
+              .attr("y", 244)
+              .text("(Click for more info)")
       }
     }
 
