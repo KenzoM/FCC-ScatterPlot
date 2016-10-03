@@ -13,7 +13,7 @@ body{
 }
 
 #canvas{
-	margin: 55px auto;
+	margin: 30px auto;
 	background: rgba(0, 0, 0, 0.69);
 	width: 960px;
 	height: 700px;
@@ -95,4 +95,10 @@ g.axis path {
     stroke-width:2;
     stroke:white;
 		shape-rendering: crispEdges;
+}
+
+.errorMessage{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
 }

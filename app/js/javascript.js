@@ -3,8 +3,8 @@ $(document).ready(function(){
   const h = 600;
   const margin = {
     top: 50,
-    bottom: 90,
-    left: 80,
+    bottom: 80,
+    left: 60,
     right: 100
   }
 
@@ -287,6 +287,15 @@ $(document).ready(function(){
       title()
       render(data)
       footer()
+    },
+    error: () =>{
+      let chart = document.getElementById('canvas');
+      chart.style.display = "table"
+      let errorMessage = document.createElement("h1");
+      errorMessage.innerHTML = "ERROR 404: File Not Found!"
+      errorMessage.className = "errorMessage";
+
+      chart.appendChild(errorMessage)
     }
   })
 })
