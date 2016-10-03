@@ -6,6 +6,7 @@ html {
   background-size: cover; }
 
 body {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   color: white; }
 
@@ -38,7 +39,7 @@ g.gridline line {
   font-size: 18px; }
 
 .bikers-name {
-  font-size: 14px;
+  font-size: 13px;
   fill: white; }
 
 g.axis line, g.axis path {
@@ -49,7 +50,7 @@ g.axis line, g.axis path {
 
 g.axis text {
   fill: white;
-  font-family: sans-serif; }
+  shape-rendering: crispEdges; }
 
 g.axis path {
   stroke-width: 2;
