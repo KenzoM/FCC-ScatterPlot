@@ -38,14 +38,29 @@ g.gridline line{
 }
 
 .axis{
-	fill:white;
+	fill: white;
 	font-size: 17px;
 }
 
 .axis-label{
 	text-anchor: middle;
 	fill: white;
-	font-size: 18px;
+	font-size: 20px;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 250px;
+  height: 98px;
+  padding: 7px;
+  font: 15px sans-serif;
+  background: black;
+  border: 25px;
+  border-radius: 12px;
+	line-height: 18px;
+  pointer-events: none;
+	box-shadow: 0px 0px 12px -10px;
 }
 
 .bikers-name{

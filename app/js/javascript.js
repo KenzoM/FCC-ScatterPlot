@@ -84,11 +84,18 @@ $(document).ready(function(){
                         .tickFormat("")
 
     //add tooltip for user's interaction
-    const tooltip = d3.select("#chart")
+    const toolTip = d3.select("#canvas")
                 .append("div")
                   .classed("tooltip", true)
                   .style("opacity",0)
+                  .text("helloWorld")
 
+    function textToolTip(d){
+      const allegation = d.Doping === "" ? "No allegations" : d.Doping
+
+      return d.Name + ":" + " " + d.Nationality + "<br>" +
+            "Year: " + d.Year + " Time: " + d.Time + "<br><br>" + allegation
+    }
 
     //drawAxis purpose is to render the axis and its label once
     function drawAxis(params){
@@ -153,10 +160,18 @@ $(document).ready(function(){
             return d.Doping === "" ? "66CDFF" : "FF6680"
           })
           .on("mouseover",function(d,i){
+            const text = textToolTip(d)
+            toolTip.transition()
+                  .style("opacity",0.9)
+            toolTip.html(text)
+                  .style("left", (d3.event.pageX + 20) + "px")
+                  .style("top", (d3.event.pageY - 28) + "px")
             d3.select(this)
               .style("r",8)
           })
           .on("mouseout",function(d,i){
+            // toolTip.transition()
+            //     .style("opacity",0)
             d3.select(this)
               .style("r",6)
           })
