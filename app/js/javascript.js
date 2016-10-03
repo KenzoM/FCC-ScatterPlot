@@ -7,6 +7,7 @@ $(document).ready(function(){
     left: 80,
     right: 100
   }
+
   function title(){
     const mainTitle = document.createElement("h1");
     mainTitle.innerHTML = "DOPING IN PROFESSIONAL BICYCLE RACING"
@@ -25,7 +26,24 @@ $(document).ready(function(){
     canvas.appendChild(subTitle)
     canvas.appendChild(intro)
   }
+  function footer(){
+    const sources = [
+      'https://en.wikipedia.org/wiki/Alpe_d%27Huez',
+      'http://www.fillarifoorumi.fi/forum/showthread.php?38129-Ammattilaispy%F6r%E4ilij%F6iden-nousutietoja-%28aika-km-h-VAM-W-W-kg-etc-%29&p=2041608#post2041608',
+      'https://alex-cycle.blogspot.com/2015/07/alpe-dhuez-tdf-fastest-ascent-times.html',
+      'http://www.dopeology.org/'
+    ]
 
+    const footer = document.getElementById("footer");
+    let sourceTitle = document.createElement("p");
+    let str = ""
+    sources.forEach(function(source){
+      str += source + "<br>"
+    })
+    sourceTitle.innerHTML = str;
+    footer.appendChild(sourceTitle)
+
+  }
   function render(data){
     const width = w - (margin.left + margin.right);
     const height = h - (margin.top + margin.bottom);
@@ -268,6 +286,7 @@ $(document).ready(function(){
     success: (data) =>{
       title()
       render(data)
+      footer()
     }
   })
 })

@@ -13,10 +13,20 @@ body{
 }
 
 #canvas{
-	margin: 45px auto;
+	margin: 55px auto;
 	background: rgba(0, 0, 0, 0.69);
 	width: 960px;
 	height: 700px;
+}
+
+#footer{
+	color: #bbb;
+	text-shadow: 2px 2px 4px;
+	text-align: left;
+	position: relative;
+	bottom: 0px;
+	font-size: 1em;
+	display: block;
 }
 
 #chart{
