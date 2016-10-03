@@ -41,7 +41,7 @@ $(document).ready(function(){
 
     const y = d3.scaleLinear()
                 .domain(d3.extent(data,function(d){
-                  return d.Place + 2
+                  return d.Place + 1
                 }))
                 .range([0, height])
 
@@ -51,6 +51,14 @@ $(document).ready(function(){
                     .tickSize(10);
 
     const yAxis = d3.axisLeft(y);
+
+    const xGridlines = d3.axisBottom(x)
+                        .tickSize(-height)
+                        .tickFormat("");
+
+    const yGridlines = d3.axisLeft(y)
+                        .tickSize(-width)
+                        .tickFormat("")
 
     //add tooltip for user's interaction
     const tooltip = d3.select("#chart")
@@ -62,6 +70,11 @@ $(document).ready(function(){
     //drawAxis purpose is to render the axis and its label once
     function drawAxis(params){
       if(params.initialize){
+        //draw x gridLines
+        this.append("g")
+            .classed("x gridline", true)
+            .attr("transform","translate(0,"+ height +")")
+            .call(params.axis.gridlines.x)
         //draw x axis units
         this.append("g")
             .call(params.axis.x)
@@ -152,7 +165,11 @@ $(document).ready(function(){
       data:data,
       axis:{
         x: xAxis,
-        y: yAxis
+        y: yAxis,
+        gridlines : {
+          x: xGridlines,
+          y: yGridlines
+        }
       },
       initialize: true
     })

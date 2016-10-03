@@ -14,6 +14,13 @@ body {
   width: 950px;
   height: 600px; }
 
+g.gridline line {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: rgba(175, 175, 175, 0.72);
+  stroke-width: 1px;
+  stroke-dasharray: 2; }
+
 .axis {
   fill: white;
   font-size: 17px; }
@@ -39,4 +46,5 @@ g.axis text {
 
 g.axis path {
   stroke-width: 2;
-  stroke: white; }
+  stroke: white;
+  shape-rendering: crispEdges; }
